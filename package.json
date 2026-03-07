@@ -12,6 +12,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
     "ip": "^2.0.1",
+    "ipaddr.js": "^2.3.0",
     "jspdf": "^4.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
