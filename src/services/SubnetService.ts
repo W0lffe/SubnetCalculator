@@ -134,4 +134,15 @@ export class SubnetService {
             .split("1").length - 1
     }
 
+    public static getSubnetsOptions(): string[] {
+        const subnets: string[] = [];
+
+        for(let cidr = 1; cidr <= 30; cidr++){
+            const mask = this.intToIp(this.cidrToMaskInt(cidr));
+            subnets.push(`/${cidr} - ${mask}`);
+        }
+
+        return subnets;
+    }
+
 }

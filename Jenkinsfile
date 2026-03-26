@@ -12,11 +12,16 @@ pipeline {
             }
         }
         stage('Install Dependencies') {
-            steps { sh 'npm ci' } 
+            steps {  sh '''
+                    rm -rf node_modules
+                    rm -f package-lock.json
+                    npm cache clean --force
+                    npm install
+                ''' } 
         }
         stage('Test') { 
             steps { 
-                sh 'npm run test -- --reporter junit --outputFile test-results/results.xml' 
+                sh 'npm run test -- --reporter=default --reporter=junit --outputFile=test-results/results.xml' 
             } 
             post {
                 always {
