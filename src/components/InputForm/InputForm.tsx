@@ -15,7 +15,7 @@ export default function InputForm() {
         subnetMask: string;
     };
 
-    const handleSubmit = (prevState: FormState | null, formData: FormData): FormState => {
+    const handleSubmit = (_prevState: FormState | null, formData: FormData): FormState => {
         const ipAddress = formData.get("ip-address") as string;
         const subnetMask = formData.get("subnet-mask") as string;
         console.log("IP Address:", ipAddress);
