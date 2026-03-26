@@ -12,7 +12,12 @@ pipeline {
             }
         }
         stage('Install Dependencies') {
-            steps { sh 'npm ci' } 
+            steps {  sh '''
+                    rm -rf node_modules
+                    rm -f package-lock.json
+                    npm cache clean --force
+                    npm install
+                ''' } 
         }
         stage('Test') { 
             steps { 
