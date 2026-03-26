@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Test') { 
             steps { 
-                sh 'npm run test -- --reporter junit --outputFile test-results/results.xml' 
+                sh 'npm run test -- --reporter=default --reporter=junit --outputFile=test-results/results.xml' 
             } 
             post {
                 always {
