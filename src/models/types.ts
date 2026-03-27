@@ -5,6 +5,12 @@ export type FormItem = {
 }
 
 export type FormState = {
-    ipAddress: string;
-    subnetMask: string;
+        ipAddress: string;
+        subnetMask: string;
+        errors?: string[];
+    };
+
+export type ValidationResult = {
+  valid: boolean;
+  errors: string[];
 };

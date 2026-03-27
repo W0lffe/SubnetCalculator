@@ -1,6 +1,8 @@
 import FormInputItem from "../FormInputItem/FormInputItem";
-import { type FormItem } from "../../models/types"
+import { type FormItem, type FormState } from "../../models/types"
 import { useActionState } from "react";
+import { SubnetService } from "../../services/SubnetService";
+import { validateIpAddress } from "../../util/validate";
 
 
 export default function InputForm() {
@@ -10,17 +12,21 @@ export default function InputForm() {
         { label: "Subnet Mask / CIDR Notation", type: "select", id: "subnet-mask" }
     ]
 
-    type FormState = {
-        ipAddress: string;
-        subnetMask: string;
-    };
-
-    const handleSubmit = (_prevState: FormState | null, formData: FormData): FormState => {
+    const handleSubmit = (_prevState: FormState | null, formData: FormData): FormState | null => {
         const ipAddress = formData.get("ip-address") as string;
         const subnetMask = formData.get("subnet-mask") as string;
+/* 
         console.log("IP Address:", ipAddress);
-        console.log("Subnet Mask:", subnetMask);
-        return {ipAddress, subnetMask };
+        console.log("Subnet Mask:", subnetMask); */
+
+        const { valid, errors } = validateIpAddress(ipAddress);
+
+        if (!valid) {
+            return { ipAddress, subnetMask, errors };
+        }
+
+        //console.log(SubnetService.calculate(ipAddress, subnetMask));
+        return null;
     }
 
     const [formData, formAction] = useActionState(handleSubmit, null);
