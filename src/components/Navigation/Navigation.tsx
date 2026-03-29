@@ -16,7 +16,7 @@ export default function Navigation(){
     return(
         <div>
             <button value="/" onClick={(e) => handleClick(e)}>Home</button>
-            <button value="/app" onClick={(e) => handleClick(e)}>App</button>
+            <button value="/calc" onClick={(e) => handleClick(e)}>Calculator</button>
         </div>
     )
 }
