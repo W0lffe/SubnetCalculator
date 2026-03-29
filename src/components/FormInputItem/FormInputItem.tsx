@@ -2,7 +2,7 @@ import { type FormItem } from "../../models/types";
 import { SubnetService } from "../../services/SubnetService"
 import { type FormState } from "../../models/types";
 
-interface FormInputItemProps {
+type FormInputItemProps = {
     item: FormItem;
     defaultValues: FormState | null;
 }
