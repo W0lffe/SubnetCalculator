@@ -2,6 +2,8 @@ import { useState } from 'react';
 import InputForm from './components/InputForm/InputForm';
 import type { SubnetResult } from './models/SubnetResult';
 import ResultTable from './components/ResultTable/ResultTable';
+import Navigation from './components/Navigation/Navigation';
+import { Routes } from 'react-router-dom';
 
 function App() {
 
@@ -9,10 +11,17 @@ function App() {
   //console.log(calculationResult);
 
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div>
+     <div className='flex flex-col items-center justify-center'>
+      <Navigation/>
       <InputForm setCalculationResult={setCalculationResult} />
       <ResultTable results={calculationResult} />
     </div>
+    <Routes>
+      
+    </Routes>
+    </div>
+   
   )
 }
 
