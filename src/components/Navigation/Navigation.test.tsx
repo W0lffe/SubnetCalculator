@@ -15,7 +15,7 @@ describe("Testing component: Navigation", () => {
     renderNavigation();
 
     expect(screen.getByText("Home")).toBeInTheDocument();
-    expect(screen.getByText("App")).toBeInTheDocument();
+    expect(screen.getByText("Calculator")).toBeInTheDocument();
   });
 
   test("navigates to '/' when Home is clicked", () => {
@@ -26,11 +26,11 @@ describe("Testing component: Navigation", () => {
     expect(mockNavigate).toHaveBeenCalledWith("/");
   });
 
-  test("navigates to '/app' when App is clicked", () => {
+  test("navigates to '/calc' when Calculator is clicked", () => {
     renderNavigation();
 
-    fireEvent.click(screen.getByText("App"));
+    fireEvent.click(screen.getByText("Calculator"));
 
-    expect(mockNavigate).toHaveBeenCalledWith("/app");
+    expect(mockNavigate).toHaveBeenCalledWith("/calc");
   });
 });

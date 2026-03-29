@@ -1,28 +1,17 @@
-import { useState } from 'react';
-import InputForm from './components/InputForm/InputForm';
-import type { SubnetResult } from './models/SubnetResult';
-import ResultTable from './components/ResultTable/ResultTable';
-import { Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
+import Calculator from './pages/Calculator';
 
-function App() {
-
-  const [calculationResult, setCalculationResult] = useState<SubnetResult | null>(null);
-  //console.log(calculationResult);
+export default function App() {
 
   return (
-    <div>
-     <div className='flex flex-col items-center justify-center'>
-      <Header/>
-      <InputForm setCalculationResult={setCalculationResult} />
-      <ResultTable results={calculationResult} />
-    </div>
-    <Routes>
-      
-    </Routes>
-    </div>
-   
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<div>Home Page</div>} />
+        <Route path="/calc" element={<Calculator />} />
+      </Routes>
+    </>
   )
 }
 
-export default App
