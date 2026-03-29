@@ -2,8 +2,8 @@ import { useState } from 'react';
 import InputForm from './components/InputForm/InputForm';
 import type { SubnetResult } from './models/SubnetResult';
 import ResultTable from './components/ResultTable/ResultTable';
-import Navigation from './components/Navigation/Navigation';
 import { Routes } from 'react-router-dom';
+import Header from './components/Header/Header';
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
   return (
     <div>
      <div className='flex flex-col items-center justify-center'>
-      <Navigation/>
+      <Header/>
       <InputForm setCalculationResult={setCalculationResult} />
       <ResultTable results={calculationResult} />
     </div>
