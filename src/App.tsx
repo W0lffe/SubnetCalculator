@@ -6,7 +6,7 @@ import Home from './pages/Home';
 export default function App() {
 
   return (
-      <div className='flex flex-col h-screen w-screen'>
+      <div className='flex flex-col h-screen w-screen items-center'>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
