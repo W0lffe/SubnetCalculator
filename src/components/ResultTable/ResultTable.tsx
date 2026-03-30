@@ -5,6 +5,10 @@ type ResultTableProps = {
     results: SubnetResult | null;
 }
 
+const buttonStyle = "shadow-sm shadow-black/40 p-1 hover:px-2 hover:border-b-red-600 hover:border-b-2 rounded-sm hover:bg-linear-to-b hover:from-gray-200/10 hover:to-gray-400/25 transition-all duration-150 text-lg";
+const divStyle = "w-full md:w-full flex flex-col items-center gap-3 py-5 md:border-b md:border-b-gray-400/50 md:shadow-sm md:shadow-black/10";
+
+
 export default function ResultTable({results}: ResultTableProps){
 
     if(!results) {
@@ -26,15 +30,15 @@ export default function ResultTable({results}: ResultTableProps){
     }
 
     return (
-        <div>
-            <table>
-                <tbody>
+        <div className={divStyle}>
+            <table className="flex">
+                <tbody className="flex flex-col gap-1 md:gap-3">
                     {Object.entries(results).map(([key, value]) => (
                         <TableRow key={key} label={labels[key as keyof SubnetResult]} value={value} />
                     ))}
                 </tbody>
             </table>
-            <button>Export</button>
+            <button className={buttonStyle}>Export</button>
         </div>
     )
 }
