@@ -9,10 +9,17 @@ type InputFormProps = {
         setCalculationResult: React.Dispatch<
             React.SetStateAction<SubnetResult | null>
         >;
-    };
+};
+
+const divStyle = "w-full flex flex-col border-b border-b-gray-400/50 shadow-sm shadow-black/10";
+const formStyle = "w-full flex flex-col items-center gap-2";
+const spanStyle = "flex flex-row gap-5 p-3";
+const buttonStyle = "shadow-sm shadow-black/40 p-1 hover:px-2 hover:border-b-red-600 hover:border-b-2 rounded-sm hover:bg-linear-to-b hover:from-gray-200/10 hover:to-gray-400/25 transition-all duration-150 text-lg";
+
+
 
 export default function InputForm({ setCalculationResult }: InputFormProps) {
-
+   
     const formItems: FormItem[] = [
         { label: "IP Address", type: "text", id: "ip-address" },
         { label: "Subnet Mask / CIDR Notation", type: "select", id: "subnet-mask" }
@@ -42,13 +49,15 @@ export default function InputForm({ setCalculationResult }: InputFormProps) {
     const [formData, formAction] = useActionState(handleSubmit, null);
 
     return (
-        <div>
-            <form action={formAction}>
+        <div className={divStyle}>
+            <form action={formAction} className={formStyle}>
                 {formItems.map((item, i) =>
                     <FormInputItem key={i} item={item} defaultValues={formData} />
                 )}
-                <button type="submit">Calculate</button>
-                <button onClick={(event) => reset(event)}>Reset</button>
+                <span className={spanStyle}>
+                    <button type="submit" className={buttonStyle}>Calculate</button>
+                    <button onClick={(event) => reset(event)} className={buttonStyle}>Reset</button>
+                </span>
             </form>
         </div>
 

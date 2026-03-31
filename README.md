@@ -5,3 +5,4 @@ A lightweight web application that calculates subnet information for IPv4 networ
 The project is built with React and TypeScript, with Tailwind CSS for styling, and uses the ip library for subnet calculations. It’s designed to help with subnet planning and to provide a clear, easy-to-read visualization of subnet properties.
 
 ## Checkout [Github Project](https://github.com/users/W0lffe/projects/5/views/6)
+## Try the app [here](https://subnex-calc.web.app/)!
