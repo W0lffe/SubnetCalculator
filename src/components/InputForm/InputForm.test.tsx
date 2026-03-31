@@ -1,11 +1,13 @@
 import { render, screen } from "@testing-library/react";
-import { describe, test, expect } from "vitest"
+import { describe, test, expect, vi } from "vitest"
 import InputForm from "./InputForm";
+
+const setCalculationResult = vi.fn();
 
 describe("Testing InputForm component", () => {
 
     const renderInputForm = () => {
-        return render(<InputForm />);
+        return render(<InputForm setCalculationResult={setCalculationResult} />);
     };
 
     test("renders the form with submit button", () => {

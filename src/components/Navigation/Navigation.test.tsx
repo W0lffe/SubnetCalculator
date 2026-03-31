@@ -6,6 +6,10 @@ const mockNavigate = vi.fn();
 
 vi.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate,
+  useLocation: () => ({
+    pathname: "/",
+  }),
+
 }));
 
 const renderNavigation = () => render(<Navigation />);
