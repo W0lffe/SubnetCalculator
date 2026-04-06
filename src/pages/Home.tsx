@@ -1,5 +1,5 @@
 
-const divStyle = "w-screen h-screen flex flex-col items-center p-5 md:p-2 gap-5";
+const divStyle = "w-screen h-fit flex flex-col items-center p-5 md:p-2 gap-5";
 const h2Style = "text-2xl";
 const ulStyle = "flex flex-col gap-2 p-2 list-disc list-inside";
 
