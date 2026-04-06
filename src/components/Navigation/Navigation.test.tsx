@@ -35,6 +35,6 @@ describe("Testing component: Navigation", () => {
 
     fireEvent.click(screen.getByText("Calculator"));
 
-    expect(mockNavigate).toHaveBeenCalledWith("/calc");
+    expect(mockNavigate).toHaveBeenCalledWith("/calculator");
   });
 });
