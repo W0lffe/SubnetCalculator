@@ -6,7 +6,7 @@ const inputStyle = "border p-1 rounded-sm text-center";
 const errorLabelStyle = "text-red-600 animate-pulse";
 const spanStyle = "flex flex-row gap-1";
 
-export default function FormInputItem({ item, defaultValues, showLabels, remainingHosts }: FormInputItemProps) {
+export default function FormInputItem({ item, defaultValues, remainingHosts, onChange }: FormInputItemProps) {
 
     if (item.type === "select") {
         
@@ -15,12 +15,12 @@ export default function FormInputItem({ item, defaultValues, showLabels, remaini
 
         return (
             <div className="flex flex-col md:flex-row gap-1">
-                {showLabels && 
+                {item?.label && 
                     <label htmlFor={item.id} className={labelStyle}>
                         {item.label}
                     </label>
                 }
-                <select id={item.id} name={item.id} className={inputStyle} defaultValue={subnets[23] || subnets[0]}>
+                <select id={item.id} name={item.id} className={inputStyle} defaultValue={subnets[23] || defaultValues?.subnetMask} onChange={(e) => onChange && onChange(e)}>
                     {subnets.map((subnet, i) => (
                         <option key={i} value={subnet}>
                             {subnet}
@@ -34,17 +34,18 @@ export default function FormInputItem({ item, defaultValues, showLabels, remaini
     return (
         <div className="flex flex-col gap-1 items-center">
             <span className={spanStyle}>
-                {showLabels && 
+                {item?.label && 
                     <label htmlFor={item.id} className={labelStyle}>
-                        {item.label}
+                        {item?.label}
                     </label>
                 }
-                <input type={item.type} 
+                <input type={item?.type} 
                     id={item.id} 
                     name={item.id} 
                     defaultValue={defaultValues?.ipAddress || ""} 
                     className={inputStyle} 
                     placeholder="Example: 10.0.0.10" 
+                    onChange={(e) => onChange && onChange(e)}
                 />
             </span>
             {defaultValues?.errors && <label className={errorLabelStyle}>{defaultValues.errors[0]}</label>}

@@ -8,7 +8,8 @@ export type FormState = {
         ipAddress: string;
         subnetMask: string;
         errors?: string[];
-    };
+};
+
 
 export type ValidationResult = {
   valid: boolean;
@@ -16,8 +17,8 @@ export type ValidationResult = {
 };
 
 export type FormInputItemProps = {
-    item: FormItem;
+    item: FormItem | FormItem;
     defaultValues: FormState | null;
-    showLabels: boolean;
     remainingHosts: number | null;
+    onChange?: (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
 }

@@ -168,7 +168,6 @@ export class SubnetService {
             
             if(remainingHosts !== null){
                 const totalHosts = Math.pow(2, 32 - cidr) - 2;
-                console.log(totalHosts)
                 if(totalHosts < remainingHosts){
                     const mask = this.intToIp(this.cidrToMaskInt(cidr));
                     subnets.push(`/${cidr} - ${mask}`);

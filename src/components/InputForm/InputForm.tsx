@@ -52,7 +52,7 @@ export default function InputForm({ setCalculationResult }: InputFormProps) {
         <div className={divStyle}>
             <form action={formAction} className={formStyle}>
                 {formItems.map((item, i) =>
-                    <FormInputItem key={i} item={item} defaultValues={formData} showLabels={true} remainingHosts={null} />
+                    <FormInputItem key={i} item={item} defaultValues={formData} remainingHosts={null} />
                 )}
                 <span className={spanStyle}>
                     <button type="submit" className={buttonStyle}>Calculate</button>
