@@ -1,5 +1,6 @@
 import ipaddr from "ipaddr.js"
 import type { SubnetResult } from "../models/SubnetResult"
+import type { MinimalSubnetResult } from "../models/MinimalSubnetResult"
 
 export class SubnetService {
 
@@ -22,7 +23,7 @@ export class SubnetService {
      * const result = SubnetService.calculate("192.168.1.10", "255.255.255.0")
      * console.log(result.networkAddress) // "192.168.1.0"
      */
-    static calculate(ip: string, mask: string): SubnetResult {
+    static calculateFull(ip: string, mask: string): SubnetResult {
 
         const parsedIp = ipaddr.parse(ip)
 
@@ -52,6 +53,32 @@ export class SubnetService {
             ipType: parsedIp.range()
         }
     }
+
+    static calculateMinimal(ip: string, mask: string): MinimalSubnetResult {
+
+        const cidr = mask.startsWith("/")
+            ? parseInt(mask.slice(1))
+            : this.maskToCidr(mask)
+
+        const ipInt = this.ipToInt(ip)
+        const maskInt = this.cidrToMaskInt(cidr)
+        const networkInt = ipInt & maskInt
+        const broadcastInt = networkInt | (~maskInt >>> 0)
+        const firstHost = networkInt + 1
+        const lastHost = broadcastInt - 1
+
+        return {
+            networkAddress: this.intToIp(networkInt),
+            broadcastAddress: this.intToIp(broadcastInt),
+            firstHost: this.intToIp(firstHost),
+            lastHost: this.intToIp(lastHost),
+            gateway: this.intToIp(firstHost),
+            subnetMask: this.intToIp(maskInt),
+            cidr: cidr,
+        }
+    }
+
+
 
     /**
      * Converts an IPv4 address from dotted-decimal format to a 32-bit integer.
@@ -134,12 +161,24 @@ export class SubnetService {
             .split("1").length - 1
     }
 
-    public static getSubnetsOptions(): string[] {
+    public static getSubnetsOptions(remainingHosts: number | null): string[] {
         const subnets: string[] = [];
 
         for(let cidr = 1; cidr <= 30; cidr++){
-            const mask = this.intToIp(this.cidrToMaskInt(cidr));
-            subnets.push(`/${cidr} - ${mask}`);
+            
+            if(remainingHosts !== null){
+                const totalHosts = Math.pow(2, 32 - cidr) - 2;
+                console.log(totalHosts)
+                if(totalHosts < remainingHosts){
+                    const mask = this.intToIp(this.cidrToMaskInt(cidr));
+                    subnets.push(`/${cidr} - ${mask}`);
+                }
+            }
+            else{
+                const mask = this.intToIp(this.cidrToMaskInt(cidr));
+                subnets.push(`/${cidr} - ${mask}`)
+            }
+           
         }
 
         return subnets;
