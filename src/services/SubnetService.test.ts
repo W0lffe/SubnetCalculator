@@ -4,7 +4,7 @@ import { SubnetService } from "./SubnetService"
 describe("SubnetService.calculate", () => {
 
   test("calculates subnet correctly using dotted mask", () => {
-    const result = SubnetService.calculate(
+    const result = SubnetService.calculateFull(
       "192.168.1.10",
       "255.255.255.0"
     )
@@ -20,7 +20,7 @@ describe("SubnetService.calculate", () => {
 
 
   test("calculates subnet correctly using CIDR mask", () => {
-    const result = SubnetService.calculate(
+    const result = SubnetService.calculateFull(
       "192.168.1.10",
       "/24"
     )
@@ -34,7 +34,7 @@ describe("SubnetService.calculate", () => {
 
 
   test("detects private IP range", () => {
-    const result = SubnetService.calculate(
+    const result = SubnetService.calculateFull(
       "192.168.1.0",
       "/24"
     )
@@ -44,7 +44,7 @@ describe("SubnetService.calculate", () => {
 
 
   test("detects loopback IP", () => {
-    const result = SubnetService.calculate(
+    const result = SubnetService.calculateFull(
       "127.0.0.1",
       "255.0.0.0"
     )
@@ -53,7 +53,7 @@ describe("SubnetService.calculate", () => {
   })
 
   test("detects unicast IP", () => {
-    const result = SubnetService.calculate(
+    const result = SubnetService.calculateFull(
       "8.8.8.8",
       "/24"
     )
@@ -63,7 +63,7 @@ describe("SubnetService.calculate", () => {
 
 
   test("calculates /25 subnet correctly", () => {
-    const result = SubnetService.calculate(
+    const result = SubnetService.calculateFull(
       "192.168.1.10",
       "/25"
     )

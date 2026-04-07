@@ -35,7 +35,7 @@ export default function InputForm({ setCalculationResult }: InputFormProps) {
             return { ipAddress, subnetMask, errors };
         }
 
-        const result = SubnetService.calculate(ipAddress, subnetMask);
+        const result = SubnetService.calculateFull(ipAddress, subnetMask);
         setCalculationResult(result);
       
         return null;
@@ -52,7 +52,7 @@ export default function InputForm({ setCalculationResult }: InputFormProps) {
         <div className={divStyle}>
             <form action={formAction} className={formStyle}>
                 {formItems.map((item, i) =>
-                    <FormInputItem key={i} item={item} defaultValues={formData} />
+                    <FormInputItem key={i} item={item} defaultValues={formData} showLabels={true} remainingHosts={null} />
                 )}
                 <span className={spanStyle}>
                     <button type="submit" className={buttonStyle}>Calculate</button>
