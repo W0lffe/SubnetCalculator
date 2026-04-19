@@ -1,7 +1,8 @@
 import type { SubnetResult } from "../../models/SubnetResult";
 import exportPdf from "../../util/exportPdf";
 import exportTxt from "../../util/exportTxt";
-import TableRow from "./TableRow";
+import AdvancedTableRow from "./AdvancedTableRow";
+import TableRow from "./BasicTableRow";
 
 type ResultTableProps = {
     results: SubnetResult | SubnetResult[] | null;
@@ -17,6 +18,8 @@ export default function ResultTable({results}: ResultTableProps){
     if(!results) {
         return null;
     }
+
+    const isAdvanced = Array.isArray(results);
 
     const labels: Record<keyof SubnetResult, string> = {
         ipAddress: "IP Address",
@@ -48,9 +51,14 @@ export default function ResultTable({results}: ResultTableProps){
         <div className={divStyle}>
             <table className="flex">
                 <tbody className="flex flex-col gap-1 md:gap-3">
-                    {Object.entries(results).map(([key, value]) => (
+                    {!isAdvanced && Object.entries(results).map(([key, value]) => (
                         <TableRow key={key} label={labels[key as keyof SubnetResult]} value={value} />
                     ))}
+                    {isAdvanced && results.map((result, i) => 
+                        <>
+                            <AdvancedTableRow value={result} key={i} />
+                        </>
+                    )}
                 </tbody>
             </table>
             <span className="flex flex-row gap-1">
