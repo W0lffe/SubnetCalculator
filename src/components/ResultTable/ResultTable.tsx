@@ -40,9 +40,9 @@ export default function ResultTable({results}: ResultTableProps){
         const selectedFormat = formatSelect.value;
 
         if (selectedFormat === "txt") {
-            //exportTxt(results);
+            exportTxt(results);
         } else if (selectedFormat === "pdf") {
-            //exportPdf(results);
+            exportPdf(results);
         } 
 
     }
