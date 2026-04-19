@@ -16,12 +16,12 @@ export default function ModeSelector() {
        <ul className={ulStyle}>
         <li>
             <button onClick={() => navigate("/calculator") } className={`${buttonStyle} ${getActiveMode("/calculator")}`}>
-                Basic
+                Overview
             </button>
         </li>
         <li>
             <button onClick={() => navigate("/calculator/advanced")} className={`${buttonStyle} ${getActiveMode("/calculator/advanced")}`}>
-                Advanced
+                Subnetting
             </button>
         </li>
        </ul>

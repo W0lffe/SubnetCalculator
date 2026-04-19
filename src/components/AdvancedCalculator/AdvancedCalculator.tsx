@@ -9,8 +9,6 @@ export default function AdvancedCalculator() {
     
     const [calculationResult, setCalculationResult] = useState<SubnetResult | SubnetResult[] | null>(null);
 
-    console.log("advanced calculator result:", calculationResult);
-
     return(
         <>
         <InputForm setCalculationResult={setCalculationResult} isBasic={false} />
