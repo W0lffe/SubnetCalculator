@@ -6,7 +6,7 @@ const inputStyle = "border p-1 rounded-sm text-center";
 const errorLabelStyle = "text-red-600 animate-pulse";
 const spanStyle = "flex flex-row gap-1";
 
-export default function FormInputItem({ item, defaultValues, remainingHosts, onChange }: FormInputItemProps) {
+export default function FormInputItem({ item, defaultValues, remainingHosts, onChange}: FormInputItemProps) {
 
     if (item.type === "select") {
         
@@ -20,7 +20,7 @@ export default function FormInputItem({ item, defaultValues, remainingHosts, onC
                         {item.label}
                     </label>
                 }
-                <select id={item.id} name={item.id} className={inputStyle} defaultValue={subnets[23] || defaultValues?.subnetMask} onChange={(e) => onChange && onChange(e)}>
+                <select id={item.id} name={item.id} className={inputStyle} defaultValue={subnets[23]} onChange={onChange ?? undefined}>
                     {subnets.map((subnet, i) => (
                         <option key={i} value={subnet}>
                             {subnet}
@@ -45,7 +45,6 @@ export default function FormInputItem({ item, defaultValues, remainingHosts, onC
                     defaultValue={defaultValues?.ipAddress || ""} 
                     className={inputStyle} 
                     placeholder="Example: 10.0.0.10" 
-                    onChange={(e) => onChange && onChange(e)}
                 />
             </span>
             {defaultValues?.errors && <label className={errorLabelStyle}>{defaultValues.errors[0]}</label>}

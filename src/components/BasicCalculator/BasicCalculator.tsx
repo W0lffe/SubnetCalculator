@@ -5,11 +5,11 @@ import { useState } from "react";
 
 export default function BasicCalculator() {
 
-    const [calculationResult, setCalculationResult] = useState<SubnetResult | null>(null);
+    const [calculationResult, setCalculationResult] = useState<SubnetResult | SubnetResult[] | null>(null);
 
     return(
         <>
-            <InputForm setCalculationResult={setCalculationResult} />
+            <InputForm setCalculationResult={setCalculationResult} isBasic={true} />
             <ResultTable results={calculationResult} />
         </>
     )

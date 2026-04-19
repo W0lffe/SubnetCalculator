@@ -1,6 +1,10 @@
 import type { SubnetResult } from "../models/SubnetResult";
 
-export default function exportTxt(data: SubnetResult) {
+export default function exportTxt(data: SubnetResult | SubnetResult[]) {
+const items = Array.isArray(data) ? data : [data];
+
+
+if(!Array.isArray(data)){
     const content = `
 Subnet Calculation Result
 
@@ -26,4 +30,4 @@ Wildcard Mask: ${data.wildcardMask}
     a.click();
 
     URL.revokeObjectURL(url);
-}
+}}
