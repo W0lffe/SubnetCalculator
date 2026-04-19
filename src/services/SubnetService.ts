@@ -22,7 +22,7 @@ export class SubnetService {
      * const result = SubnetService.calculate("192.168.1.10", "255.255.255.0")
      * console.log(result.networkAddress) // "192.168.1.0"
      */
-    static calculate(ip: string, mask: string): SubnetResult {
+    static calculateFull(ip: string, mask: string): SubnetResult {
 
         const parsedIp = ipaddr.parse(ip)
 
@@ -134,12 +134,23 @@ export class SubnetService {
             .split("1").length - 1
     }
 
-    public static getSubnetsOptions(): string[] {
+    public static getSubnetsOptions(remainingHosts: number | null): string[] {
         const subnets: string[] = [];
 
         for(let cidr = 1; cidr <= 30; cidr++){
-            const mask = this.intToIp(this.cidrToMaskInt(cidr));
-            subnets.push(`/${cidr} - ${mask}`);
+            
+            if(remainingHosts !== null){
+                const totalHosts = Math.pow(2, 32 - cidr) - 2;
+                if(totalHosts < remainingHosts){
+                    const mask = this.intToIp(this.cidrToMaskInt(cidr));
+                    subnets.push(`/${cidr} - ${mask}`);
+                }
+            }
+            else{
+                const mask = this.intToIp(this.cidrToMaskInt(cidr));
+                subnets.push(`/${cidr} - ${mask}`)
+            }
+           
         }
 
         return subnets;

@@ -1,5 +1,5 @@
 
-const divStyle = "w-screen h-screen flex flex-col items-center p-5 md:p-2 gap-5";
+const divStyle = "w-screen h-fit flex flex-col items-center p-5 md:p-2 gap-5";
 const h2Style = "text-2xl";
 const ulStyle = "flex flex-col gap-2 p-2 list-disc list-inside";
 
@@ -14,6 +14,8 @@ export default function Home(){
                 <li>Determine the number of available host addresses</li>
                 <li>Identify the subnet mask in dotted decimal and CIDR notation</li>
                 <li>Get wildcard mask</li>
+                <li>Subnet your network</li>
+                <li>Export results to PDF or text file</li>
             </ul>
             <p className="font-semibold">To get started, click on the "Calculator" button in the navigation menu.</p>
         </div>
