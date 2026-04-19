@@ -7,7 +7,7 @@ const setCalculationResult = vi.fn();
 describe("Testing InputForm component", () => {
 
     const renderInputForm = () => {
-        return render(<InputForm setCalculationResult={setCalculationResult} />);
+        return render(<InputForm setCalculationResult={setCalculationResult} isBasic={true} />);
     };
 
     test("renders the form with submit button", () => {

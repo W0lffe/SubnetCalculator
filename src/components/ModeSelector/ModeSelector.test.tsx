@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, test, expect, vi, beforeEach } from "vitest";
+import { describe, test, expect, vi } from "vitest";
 import ModeSelector from "./ModeSelector";
 import * as Router from "react-router-dom";
 
@@ -15,39 +15,39 @@ vi.mock("react-router-dom", () => ({
 
 describe("ModeSelector", () => {
   
-  test("renders Basic and Advanced buttons", () => {
+  test("renders Overview and Subnetting buttons", () => {
 
     render(<ModeSelector />);
 
-    expect(screen.getByText("Basic")).toBeInTheDocument();
-    expect(screen.getByText("Advanced")).toBeInTheDocument();
+    expect(screen.getByText("Overview")).toBeInTheDocument();
+    expect(screen.getByText("Subnetting")).toBeInTheDocument();
   });
 
-  test("clicking Basic calls navigate with /calculator", () => {
+  test("clicking Overview calls navigate with /calculator", () => {
     vi.spyOn(Router, "useLocation").mockReturnValue({ pathname: "/calculator" } as any);
 
     render(<ModeSelector />);
 
-    fireEvent.click(screen.getByText("Basic"));
+    fireEvent.click(screen.getByText("Overview"));
     expect(mockNavigate).toHaveBeenCalledWith("/calculator");
   });
 
-  test("clicking Advanced calls navigate with /calculator/advanced", () => {
+  test("clicking Subnetting calls navigate with /calculator/advanced", () => {
     vi.spyOn(Router, "useLocation").mockReturnValue({ pathname: "/calculator" } as any);
 
     render(<ModeSelector />);
 
-    fireEvent.click(screen.getByText("Advanced"));
-    expect(mockNavigate).toHaveBeenCalledWith("/calculator/advanced");
+    fireEvent.click(screen.getByText("Subnetting"));
+    expect(mockNavigate).toHaveBeenCalledWith("/calculator/subnetting");
   });
 
   test("adds active class for the current route", () => {
-    vi.spyOn(Router, "useLocation").mockReturnValue({ pathname: "/calculator/advanced" } as any);
+    vi.spyOn(Router, "useLocation").mockReturnValue({ pathname: "/calculator/subnetting" } as any);
 
     render(<ModeSelector />);
 
-    const basicButton = screen.getByText("Basic");
-    const advancedButton = screen.getByText("Advanced");
+    const basicButton = screen.getByText("Overview");
+    const advancedButton = screen.getByText("Subnetting");
 
     expect(basicButton.className).toContain("border-b-red-600/0");
 

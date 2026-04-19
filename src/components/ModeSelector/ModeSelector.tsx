@@ -20,7 +20,7 @@ export default function ModeSelector() {
             </button>
         </li>
         <li>
-            <button onClick={() => navigate("/calculator/advanced")} className={`${buttonStyle} ${getActiveMode("/calculator/advanced")}`}>
+            <button onClick={() => navigate("/calculator/subnetting")} className={`${buttonStyle} ${getActiveMode("/calculator/subnetting")}`}>
                 Subnetting
             </button>
         </li>

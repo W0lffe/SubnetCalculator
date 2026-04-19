@@ -14,7 +14,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="/calculator" element={<Calculator />}>
             <Route index element={<BasicCalculator />} />
-            <Route path="advanced" element={<AdvancedCalculator />} />
+            <Route path="subnetting" element={<AdvancedCalculator />} />
           </Route>
         </Routes>
       </div>
