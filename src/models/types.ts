@@ -1,3 +1,4 @@
+
 export type FormItem = {
     label: string;
     type: "text" | "select";
@@ -5,10 +6,11 @@ export type FormItem = {
 }
 
 export type FormState = {
-        ipAddress: string;
-        subnetMask: string;
-        errors?: string[];
-    };
+    ipAddress: string;
+    subnetMask: string;
+    errors?: string[];
+};
+
 
 export type ValidationResult = {
   valid: boolean;
@@ -18,6 +20,6 @@ export type ValidationResult = {
 export type FormInputItemProps = {
     item: FormItem;
     defaultValues: FormState | null;
-    showLabels: boolean;
     remainingHosts: number | null;
+    onChange: ((e: React.ChangeEvent<HTMLSelectElement>) => void)| null
 }

@@ -4,7 +4,7 @@ import exportTxt from "../../util/exportTxt";
 import TableRow from "./TableRow";
 
 type ResultTableProps = {
-    results: SubnetResult | null;
+    results: SubnetResult | SubnetResult[] | null;
 }
 
 const buttonStyle = "shadow-sm shadow-black/40 p-1 hover:px-2 hover:border-b-red-600 hover:border-b-2 rounded-sm hover:bg-linear-to-b hover:from-gray-200/10 hover:to-gray-400/25 transition-all duration-150 text-lg";
@@ -37,9 +37,9 @@ export default function ResultTable({results}: ResultTableProps){
         const selectedFormat = formatSelect.value;
 
         if (selectedFormat === "txt") {
-            exportTxt(results);
+            //exportTxt(results);
         } else if (selectedFormat === "pdf") {
-            exportPdf(results);
+            //exportPdf(results);
         } 
 
     }

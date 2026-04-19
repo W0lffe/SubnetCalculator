@@ -1,20 +1,15 @@
 import InputForm from "../InputForm/InputForm";
 import ResultTable from "../ResultTable/ResultTable";
-import { useOutletContext } from "react-router-dom";
 import type { SubnetResult } from '../../models/SubnetResult';
-
-type CalculatorContext = {
-    setCalculationResult: React.Dispatch<React.SetStateAction<SubnetResult | null>>,
-    calculationResult: SubnetResult | null
-}
+import { useState } from "react";
 
 export default function BasicCalculator() {
 
-    const { setCalculationResult, calculationResult } = useOutletContext<CalculatorContext>();
+    const [calculationResult, setCalculationResult] = useState<SubnetResult | SubnetResult[] | null>(null);
 
     return(
         <>
-            <InputForm setCalculationResult={setCalculationResult} />
+            <InputForm setCalculationResult={setCalculationResult} isBasic={true} />
             <ResultTable results={calculationResult} />
         </>
     )
